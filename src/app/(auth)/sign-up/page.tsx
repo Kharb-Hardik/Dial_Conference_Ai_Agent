@@ -2,10 +2,10 @@ import { Card } from '@/components/ui/card'
 import { SignUpView } from '@/modules/auth/ui/views/sign-up-view'
 import React from 'react'
 
-function page() {
+function Page() {
   return (
      <SignUpView />
   )
 }
 
-export default page
+export default Page

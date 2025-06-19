@@ -32,7 +32,7 @@ const formSchema= z.object({
 export const SignInView = () => {
 
     const router=useRouter();
-    const [error,setError]=useState<String | null>(null);
+    const [error,setError]=useState<string | null>(null);
     const [pending,setPending]=useState(false);
     const onSubmit= (data:z.infer<typeof formSchema>) => {
         setError(null);
@@ -68,7 +68,7 @@ export const SignInView = () => {
                     <Form {...form}>
                         <form className="p-6 md:p-8" onSubmit={form.handleSubmit(onSubmit)}>
                             <div className="flex flex-col gap-6">
-                                <div className="flex flex-col item-center text-center">
+                                <div className="flex flex-col items-center text-center">
                                     <h1 className="text-2xl font-bold">
                                         Welcome back
                                     </h1>
@@ -155,8 +155,7 @@ export const SignInView = () => {
                             </div>
                         </form>
                     </Form>
-                    <div className="bg-radial from-black to-neutral-900
- relative hidden md:flex flex-col gap-y-4 items-center justify-center ">
+                    <div className="bg-radial from-black to-neutral-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center ">
                         <img src="/logo.svg" alt="Image" className="h-[92px] w-[92px]" />
                         <p className="text-2xl font-semibold text-white">
                             Dial.AI
