@@ -1,12 +1,13 @@
 "use client"
 
-import { setErrorMap, z } from "zod"
+import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { OctagonAlertIcon } from "lucide-react"
+import { FaGithub , FaGoogle } from "react-icons/fa"
 
-import Link from "next/link"
 import { authClient } from "@/lib/auth-client"
+
 import { Card , CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -19,10 +20,12 @@ import {
     FormItem,
     FormMessage
 } from "@/components/ui/form"
+
 import { useForm } from "react-hook-form"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { auth } from "@/lib/auth"
+
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 const formSchema= z.object({
     email:z.string().email(),
@@ -30,16 +33,17 @@ const formSchema= z.object({
 })
 
 export const SignInView = () => {
-
     const router=useRouter();
     const [error,setError]=useState<string | null>(null);
     const [pending,setPending]=useState(false);
+    
     const onSubmit= (data:z.infer<typeof formSchema>) => {
         setError(null);
         setPending(true);
         authClient.signIn.email({
             email:data.email,
             password:data.password,
+            callbackURL:"/"
         },{
             onSuccess : () => {
                 setPending(false);
@@ -52,6 +56,21 @@ export const SignInView = () => {
         })
     }   
 
+    // Fixed social authentication handler
+    const onSocial = async (provider: "github" | "google") => {
+        setError(null);
+        setPending(true);
+
+        try {
+            await authClient.signIn.social({
+                provider: provider,
+            });
+            
+        } catch (err: any) {
+            setPending(false);
+            setError(err.message || "An error occurred during social sign-in");
+        }
+    }; 
 
     const form= useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -90,6 +109,7 @@ export const SignInView = () => {
                                                         {...field}
                                                     />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />   
@@ -108,6 +128,7 @@ export const SignInView = () => {
                                                         {...field}
                                                     />
                                                 </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />   
@@ -125,7 +146,7 @@ export const SignInView = () => {
                                 >
                                     Sign In
                                 </Button>
-                                <div className="after:border-border relative text-center text-sm after:absolute after:insert-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
+                                <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                                     <span className="bg-card text-muted-foreground relative z-10 px-2">
                                         Or continue with 
                                     </span>
@@ -133,29 +154,31 @@ export const SignInView = () => {
                                 <div className="grid grid-cols-2 gap-4">
                                     <Button
                                         disabled={pending}
+                                        onClick={ () => onSocial("google")}
                                         variant="outline"
                                         type="button"
                                         className="w-full"
                                     >
-                                        Google
+                                        <FaGoogle />
                                     </Button>
                                     <Button
                                         disabled={pending}
+                                        onClick={ () => onSocial("github")}
                                         variant="outline"
                                         type="button"
                                         className="w-full"
                                     >
-                                        Github
+                                        <FaGithub />
                                     </Button>
                                 </div>
                                 <div className="text-center text-sm">
-                                    Don&apos;t have an account?   
-                                    <Link href="/sign-up" className="underline underline-offset-4"> Sign Up</Link>
+                                    Don&apos;t have an account?{" "}
+                                    <Link href="/sign-up" className="underline underline-offset-4">Sign Up</Link>
                                 </div>
                             </div>
                         </form>
                     </Form>
-                    <div className="bg-radial from-black to-neutral-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center ">
+                    <div className="bg-gradient-to-br from-black to-neutral-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center ">
                         <img src="/logo.svg" alt="Image" className="h-[92px] w-[92px]" />
                         <p className="text-2xl font-semibold text-white">
                             Dial.AI
@@ -163,7 +186,7 @@ export const SignInView = () => {
                     </div>
                 </CardContent>
             </Card> 
-            <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
+            <div className="text-muted-foreground hover:*:text-primary text-center text-xs text-balance *:underline *:underline-offset-4">
                 By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#"> Privacy Policy</a>
             </div>
         </div>
