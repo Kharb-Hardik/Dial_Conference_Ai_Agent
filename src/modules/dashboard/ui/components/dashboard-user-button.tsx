@@ -65,6 +65,7 @@ export const DashboardUserButton = () => {
                 </p>
               </div>
             <ChevronDownIcon className='size-4 shrink-0'/>
+            </DrawerTrigger>
 
             <DrawerContent>
 
@@ -85,8 +86,6 @@ export const DashboardUserButton = () => {
               </DrawerFooter>
 
             </DrawerContent>
-
-        </DrawerTrigger>
       </Drawer>
     )
   }
