@@ -9,7 +9,7 @@ export const HomeView = () => {
   const router = useRouter();
   if(!session){
     return (
-      <p>Nothing</p>
+      <p>Loading Session ...</p>
   )}
   
   
