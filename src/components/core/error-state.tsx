@@ -1,5 +1,5 @@
 import React from 'react'
-import {  AlertCircleIcon, Loader2Icon } from 'lucide-react'
+import {  AlertCircleIcon } from 'lucide-react'
 
 interface Props{
     title: string
