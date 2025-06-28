@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter} from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { TRPCReactProvider } from "@/trpc/client";
+import { Toaster } from "@/components/ui/sonner";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -22,9 +23,8 @@ export default function RootLayout({
   return (
     <TRPCReactProvider>
       <html lang="en">
-        <body
-          className={`${interSans.className} antialiased`}
-        >
+        <body className={`${interSans.className} antialiased`}>
+          <Toaster />
           {children}
         </body>
       </html>

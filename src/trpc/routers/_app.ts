@@ -1,6 +1,6 @@
-import { z } from 'zod';
-import { agentsRouter } from "@/modules/agents/server/procedures"
-import { baseProcedure, createTRPCRouter } from '../init';
+import { z } from "zod";
+import { agentsRouter } from "@/modules/agents/server/procedures";
+import { baseProcedure, createTRPCRouter } from "../init";
 export const appRouter = createTRPCRouter({
   agents: agentsRouter,
 });
