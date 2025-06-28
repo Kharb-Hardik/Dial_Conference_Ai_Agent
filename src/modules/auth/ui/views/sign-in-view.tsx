@@ -69,8 +69,9 @@ export const SignInView = () => {
         provider: provider,
       });
     } catch (err: any) {
-      setPending(false);
       setError(err.message || "An error occurred during social sign-in");
+    }finally {
+      setPending(false);
     }
   };
 

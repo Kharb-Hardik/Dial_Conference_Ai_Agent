@@ -86,7 +86,7 @@ export const DashboardSidebar = () => {
         </SidebarGroup>
 
         <div>
-          <Separator className="opacity-10 text=[#5D6B68]" />
+          <Separator className="opacity-10 text-[#5D6B68]" />
         </div>
 
         <SidebarGroup>
