@@ -1,23 +1,22 @@
-import { auth } from '@/lib/auth';
+import { auth } from "@/lib/auth";
 
-import { SignUpView } from '@/modules/auth/ui/views/sign-up-view'
+import { SignUpView } from "@/modules/auth/ui/views/sign-up-view";
 
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-import React from 'react'
+import React from "react";
 
 const Page = async () => {
   const session = await auth.api.getSession({
-      headers: await headers()
+    headers: await headers(),
   });
-  
-  if(!!session){
-    redirect("/")
+
+  if (!!session) {
+    redirect("/");
   }
 
-  return <SignUpView />  
-}
+  return <SignUpView />;
+};
 
-
-export default Page
+export default Page;

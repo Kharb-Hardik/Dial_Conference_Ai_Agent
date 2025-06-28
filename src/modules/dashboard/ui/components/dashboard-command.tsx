@@ -1,25 +1,24 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction } from "react";
 
-import { CommandInput, CommandItem, CommandList, CommandResponsiveDialog } from '@/components/ui/command'
+import {
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandResponsiveDialog,
+} from "@/components/ui/command";
 
-interface Props{
-    open: boolean;
-    setOpen: Dispatch<SetStateAction<boolean>> ;
+interface Props {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-
-export const DashboardCommand = ({ open, setOpen }:Props) => {
+export const DashboardCommand = ({ open, setOpen }: Props) => {
   return (
     <CommandResponsiveDialog open={open} onOpenChange={setOpen}>
-         <CommandInput 
-            placeholder='Find a meeting or an agent'
-         />
-         <CommandList>
-            <CommandItem>
-                Test
-            </CommandItem>
-         </CommandList>
+      <CommandInput placeholder="Find a meeting or an agent" />
+      <CommandList>
+        <CommandItem>Test</CommandItem>
+      </CommandList>
     </CommandResponsiveDialog>
-   
-  )
-}
+  );
+};
