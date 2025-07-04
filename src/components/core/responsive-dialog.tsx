@@ -5,10 +5,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Drawer,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
   DrawerDescription,
 } from "@/components/ui/drawer";
 import {
@@ -18,7 +16,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { useId } from "react";
 
 interface responsiveDialogProps {
   title: string;
