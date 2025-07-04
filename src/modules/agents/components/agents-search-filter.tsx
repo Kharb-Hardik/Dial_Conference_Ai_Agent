@@ -14,7 +14,7 @@ export const AgentsSearchFilter = () => {
         onChange={(e) => setFilters({ search: e.target.value })}
       />
 
-      <SearchIcon className="size-4 absolute left-4 top-1/2 -translate-1/2 text-muted-foreground" />
+      <SearchIcon className="size-4 absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
     </div>
   );
 };
