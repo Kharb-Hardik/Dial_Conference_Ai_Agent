@@ -3,7 +3,7 @@ import { ResponsiveDialog } from "@/components/core/responsive-dialog";
 import { AgentForm } from "./agent-form";
 import { AgentGetOne } from "../types";
 
-interface NewAgentDialogProps {
+interface UpdateAgentDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   initialValues: AgentGetOne;
@@ -13,7 +13,7 @@ export const UpdateAgentDialog = ({
   open,
   onOpenChange,
   initialValues,
-}: NewAgentDialogProps) => {
+}: UpdateAgentDialogProps) => {
   return (
     <ResponsiveDialog
       open={open}
