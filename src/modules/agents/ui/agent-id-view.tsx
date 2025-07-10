@@ -9,14 +9,14 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { AgentIdViewHeader } from "../../components/agents-id-view-header";
+import { AgentIdViewHeader } from "../components/agents-id-view-header";
 import { GeneratedAvatar } from "@/components/core/generated-avatar";
 import { Badge } from "@/components/ui/badge";
 import { VideoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useConfirm } from "../../hooks/user-confirm";
-import { UpdateAgentDialog } from "../../components/update-agent-dialog";
+import { useConfirm } from "../hooks/user-confirm";
+import { UpdateAgentDialog } from "../components/update-agent-dialog";
 
 interface Props {
   agentId: string;

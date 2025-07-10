@@ -6,12 +6,12 @@ import { useTRPC } from "@/trpc/client";
 import React from "react";
 import { LoadingState } from "@/components/core/loading-state";
 import { ErrorState } from "@/components/core/error-state";
-import { DataTable } from "../../components/data-table";
-import { columns } from "../../components/columns";
+import { columns } from "../components/columns";
 import { EmptyState } from "@/components/core/empty-state";
-import { useAgentFilters } from "../../hooks/use-agent-filter";
-import { DataPagination } from "../../components/data-pagination";
+import { useAgentFilters } from "../hooks/use-agent-filter";
+import { DataPagination } from "../components/data-pagination";
 import { useRouter } from "next/navigation";
+import { DataTable } from "@/components/core/data-table";
 
 export const AgentView = () => {
   const [filters, setFilters] = useAgentFilters();
