@@ -17,7 +17,7 @@ export const agentsRouter = createTRPCRouter({
   update: protectedProcedure
     .input(agentUpdateSchema)
     .mutation(async ({ ctx, input }) => {
-      const [updateAgent] = await db
+      const [updatedAgent] = await db
         .update(agents)
         .set(input)
         .where(
@@ -25,33 +25,33 @@ export const agentsRouter = createTRPCRouter({
         )
         .returning();
 
-      if (!updateAgent) {
+      if (!updatedAgent) {
         throw new TRPCError({
           code: "NOT_FOUND",
           message: "Agent not Found",
         });
       }
 
-      return updateAgent;
+      return updatedAgent;
     }),
   remove: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const [removeAgent] = await db
+      const [removedAgent] = await db
         .delete(agents)
         .where(
           and(eq(agents.id, input.id), eq(agents.userId, ctx.auth.user.id))
         )
         .returning();
 
-      if (!removeAgent) {
+      if (!removedAgent) {
         throw new TRPCError({
           code: "NOT_FOUND",
           message: "Agent not Found",
         });
       }
 
-      return removeAgent;
+      return removedAgent;
     }),
   getOne: protectedProcedure
     .input(z.object({ id: z.string() }))
@@ -124,9 +124,6 @@ export const agentsRouter = createTRPCRouter({
   create: protectedProcedure
     .input(agentInsertSchema)
     .mutation(async ({ ctx, input }) => {
-      const { name, instruction } = input;
-      const { auth } = ctx;
-
       const [createdAgent] = await db
         .insert(agents)
         .values({
