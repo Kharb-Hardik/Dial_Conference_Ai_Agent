@@ -22,19 +22,24 @@ const page = async ({ searchParams }: Props) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
+  
   if (!session) {
     redirect("/sign-in");
   }
 
   const filters = await loadSearchParams(searchParams);
-
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(
-    trpc.agents.getMany.queryOptions({
-      ...filters,
-    })
-  );
+
+  // Prefetch with error handling
+  try {
+    await queryClient.prefetchQuery(
+      trpc.agents.getMany.queryOptions({
+        ...filters,
+      })
+    );
+  } catch (error) {
+    console.error('Prefetch failed:', error);
+  }
 
   return (
     <>

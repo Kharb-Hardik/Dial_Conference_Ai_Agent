@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { VideoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useConfirm } from "../hooks/user-confirm";
+import { useConfirm } from "@/hooks/user-confirm";
 import { UpdateAgentDialog } from "../components/update-agent-dialog";
 
 interface Props {
