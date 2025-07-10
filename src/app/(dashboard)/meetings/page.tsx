@@ -4,7 +4,7 @@ import {
   MeetingView,
   MeetingViewError,
   MeetingViewLoading,
-} from "@/modules/meetings/ui/views/meeting-view";
+} from "@/modules/meetings/ui/meeting-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { headers } from "next/headers";

@@ -2,7 +2,7 @@ import {
   AgentIdError,
   AgentIdLoading,
   AgentIdView,
-} from "@/modules/agents/ui/views/agent-id-view";
+} from "@/modules/agents/ui/agent-id-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import React, { Suspense } from "react";
