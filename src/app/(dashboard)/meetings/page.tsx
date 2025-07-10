@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { MeetingsListHeader } from "@/modules/meetings/components/meetings-list-header";
+import { MeetingsListHeader } from "@/modules/meetings/components/meeting-list-header";
 import {
   MeetingView,
   MeetingViewError,
@@ -19,8 +19,6 @@ interface Props {
 }
 
 const Page = async ({ searchParams }: Props) => {
-  const filters = await loadSearchParams(searchParams);
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -29,6 +27,7 @@ const Page = async ({ searchParams }: Props) => {
     redirect("/sign-in");
   }
 
+  const filters = await loadSearchParams(searchParams);
   const queryClient = getQueryClient();
   void queryClient.prefetchQuery(
     trpc.meetings.getMany.queryOptions({ ...filters })
