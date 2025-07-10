@@ -3,13 +3,13 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { LoadingState } from "@/components/core/loading-state";
 import { ErrorState } from "@/components/core/error-state";
 import { columns } from "../components/columns";
 import { EmptyState } from "@/components/core/empty-state";
 import { useAgentFilters } from "../hooks/use-agent-filter";
-import { DataPagination } from "../components/data-pagination";
+import { DataPagination } from "../../../components/core/data-pagination";
 import { useRouter } from "next/navigation";
 import { DataTable } from "@/components/core/data-table";
 
@@ -40,7 +40,7 @@ export const AgentView = () => {
         </>
       ) : (
         <EmptyState
-          title="Create your first agent"
+          title="Create an agent"
           description="Create an agent to join your meetings. Each agent will follow your instructions and can interact with participants during the call."
         />
       )}

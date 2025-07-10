@@ -98,7 +98,7 @@ export const MeetingForm = ({
       updateMeeting.mutate({ ...values, id: initialValues.id });
     } else {
       createMeeting.mutate(values);
-    } 
+    }
   };
 
   return (

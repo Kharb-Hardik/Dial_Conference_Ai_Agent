@@ -5,6 +5,7 @@ import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from "nuqs/adapters/next";
+import { NavigationLoader } from "@/components/core/navigation-loader";
 
 const interSans = Inter({
   variable: "--font-inter-sans",

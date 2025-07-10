@@ -54,12 +54,16 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
               {row.original.agent.name}
             </span>
           </div>
-          <GeneratedAvatar 
+          <GeneratedAvatar
             variant="botttsNeutral"
             seed={row.original.agent.name}
             className="size-4"
           />
-          <span>{row.original.startedAt ? format(row.original.startedAt, "MMM d") : ""}</span>
+          <span>
+            {row.original.startedAt
+              ? format(row.original.startedAt, "MMM d")
+              : ""}
+          </span>
         </div>
       </div>
     ),
@@ -68,7 +72,8 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const Icon = statusIconMap[row.original.status as keyof typeof statusIconMap]
+      const Icon =
+        statusIconMap[row.original.status as keyof typeof statusIconMap];
 
       return (
         <Badge
@@ -78,15 +83,15 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
             statusColorMap[row.original.status as keyof typeof statusColorMap]
           )}
         >
-          <Icon 
+          <Icon
             className={cn(
               row.original.status === "processing" && "animate-spin"
             )}
           />
           {row.original.status}
         </Badge>
-      )
-    }
+      );
+    },
   },
   {
     accessorKey: "duration",
@@ -94,11 +99,13 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
     cell: ({ row }) => (
       <Badge
         variant="outline"
-        className="capitalize [&>svg]:size-4 flex tiems-center gap-x-2"
+        className="capitalize [&>svg]:size-4 flex items-center gap-x-2"
       >
         <ClockFadingIcon className="text-blue-700" />
-        {row.original.duration ? formatDuration(row.original.duration) : "No duration"}
+        {row.original.duration
+          ? formatDuration(row.original.duration)
+          : "No duration"}
       </Badge>
-    )
+    ),
   },
 ];

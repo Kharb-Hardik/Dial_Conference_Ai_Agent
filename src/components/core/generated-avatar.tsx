@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { createAvatar } from "@dicebear/core";
 import { botttsNeutral, initials } from "@dicebear/collection";
-
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
@@ -15,24 +15,33 @@ export const GeneratedAvatar = ({
   className,
   variant,
 }: GeneratedAvatarProps) => {
-  let avatar;
+  const [avatarUri, setAvatarUri] = useState<string | null>(null);
 
-  if (variant === "botttsNeutral") {
-    avatar = createAvatar(botttsNeutral, {
-      seed,
-    });
-  } else {
-    avatar = createAvatar(initials, {
-      seed,
-      fontWeight: 500,
-      fontSize: 42,
-    });
-  }
+  useEffect(() => {
+    const generateAvatar = async () => {
+      const avatar =
+        variant === "botttsNeutral"
+          ? createAvatar(botttsNeutral, { seed })
+          : createAvatar(initials, {
+              seed,
+              fontWeight: 500,
+              fontSize: 42,
+            });
+
+      const uri = await avatar.toDataUri(); // wait for async toDataUri
+      setAvatarUri(uri);
+    };
+
+    generateAvatar();
+  }, [seed, variant]);
 
   return (
     <Avatar className={cn(className)}>
-      <AvatarImage src={avatar.toDataUri()} alt="Avatar" />
-      <AvatarFallback> {seed.charAt(0).toUpperCase()} </AvatarFallback>
+      {avatarUri ? (
+        <AvatarImage src={avatarUri} alt="Avatar" />
+      ) : (
+        <AvatarFallback>{seed.charAt(0).toUpperCase()}</AvatarFallback>
+      )}
     </Avatar>
   );
 };

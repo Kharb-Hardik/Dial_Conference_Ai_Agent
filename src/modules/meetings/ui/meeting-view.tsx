@@ -8,11 +8,15 @@ import { columns } from "../components/columns";
 import { DataTable } from "@/components/core/data-table";
 import { EmptyState } from "@/components/core/empty-state";
 import { useRouter } from "next/navigation";
+import { useMeetingFilters } from "../hooks/use-meetings-filter";
+import { DataPagination } from "@/components/core/data-pagination";
 
 export const MeetingView = () => {
-  const router= useRouter();
+  const router = useRouter();
   const trpc = useTRPC();
-  const { data } = useSuspenseQuery(trpc.meetings.getMany.queryOptions({}));
+  const [filters, setFilters] = useMeetingFilters();
+  const { data } = useSuspenseQuery(trpc.meetings.getMany.queryOptions({ ...filters }));
+
   return (
     <div className="flex-1 pb-4 px-4 md:px-8 flex flex-col gap-y-4">
       {data.items.length !== 0 ? (
@@ -20,17 +24,17 @@ export const MeetingView = () => {
           <DataTable
             data={data.items}
             columns={columns}
-            onRowClick={(row) => router.push(`/agents/${row.id}`)}
+            onRowClick={(row) => router.push(`/meetings/${row.id}`)}
           />
-          {/* <DataPagination
+          <DataPagination
             page={filters.page}
             totalPages={data.totalPages}
             onPageChange={(page) => setFilters({ page })}
-          /> */}
+          />
         </>
       ) : (
         <EmptyState
-          title="Create your first meeting"
+          title="Create a meeting"
           description="Schedule a meeting to connect with others. Each meeting lets you collaborate, share ideas, and interact with participants in real time"
         />
       )}
