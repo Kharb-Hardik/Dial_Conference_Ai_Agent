@@ -4,12 +4,11 @@ import { Button } from "@/components/ui/button";
 import { PlusIcon, XCircleIcon } from "lucide-react";
 import React, { useState } from "react";
 import { NewMeetingDialog } from "./new-meeting-dialog";
-import { MeetingSearchFilter } from "./meetings-search-filter";
+import { MeetingSearchFilter } from "./meeting-search-filter";
 import { StatusFilter } from "./status-filter";
 import { AgentIdFilter } from "./agent-id-filter";
 import { useMeetingFilters } from "../hooks/use-meetings-filter";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { DEFAULT_PAGE } from "@/constants";
 
 export const MeetingsListHeader = () => {

@@ -7,8 +7,7 @@ import { NewAgentDialog } from "./new-agent-dialog";
 import { useAgentFilters } from "../hooks/use-agent-filter";
 import { AgentsSearchFilter } from "./agents-search-filter";
 import { DEFAULT_PAGE } from "@/constants";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export const AgentsListHeader = () => {
   const [filters, setFilters] = useAgentFilters();
